@@ -17,7 +17,7 @@
             (
             #{item.name},
             #{item.chapter},
-            #{item.url},
+            #{item.url}
             )
         </foreach>
     </insert>
