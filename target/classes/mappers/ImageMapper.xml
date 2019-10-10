@@ -1,0 +1,28 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kang.dao.ImageDao">
+    <resultMap id="imageMap" type="cn.kang.model.Image">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="chapter" property="chapter"/>
+        <result column="url" property="url"/>
+    </resultMap>
+    <insert id="addImage" parameterType="cn.kang.model.Image">
+        insert into tb_image(name, chapter, url)
+        VALUES (#{name}, #{chapter}, #{url});
+    </insert>
+    <insert id="addImageList" parameterType="list">
+        insert into tb_image(name, chapter, url)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.name},
+            #{item.chapter},
+            #{item.url},
+            )
+        </foreach>
+    </insert>
+    <select id="findAll" resultType="cn.kang.model.Image">
+        select *
+        from tb_image;
+    </select>
+</mapper>
